@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <CKEditor
         initData="<p>This is an example CKEditor 4 WYSIWYG editor instance.</p>"
-        config={{ extraPlugins: ["emoji", "justify", "exportpdf", "language", "div", "font", "autolink", "colorbutton", "find", "forms", "iframe", "link", "liststyle", "newpage", "pagebreak", "magicline", "print", "save", "tableresize", "widget", "uicolor", "smiley"] }}
+        config={{ extraPlugins: ["emoji", "justify", "exportpdf", "language", "div", "font", "autolink", "colorbutton", "find", "forms", "iframe", "link", "liststyle", "newpage", "pagebreak", "magicline", "print", "save", "tableresize", "widget", "uicolor", "smiley", "autogrow", "colordialog", "docprops", "devtools", "copyformatting", "codesnippet", "bidi", "a11yhelp", "autocomplete", "mentions", "indentblock", "panelbutton", "pastefromgdocs", "pastefromlibreoffice", "pastefromword", "pastetools", "preview", "scayt", "selectall", "sharedspace", "showblocks", "specialchar", "stylesheetparser", "table", "tableselection", "tabletools", "templates", "textmatch", "textwatcher", "widget"] }}
         onChange={(event, editor) => {
           // console.log(event);
           // console.log(event.editor.getData());
@@ -43,8 +43,10 @@ function App() {
 
       {open && (
         <CKEditor
-          initData={data}
-          config={{ extraPlugins: ["emoji", "justify", "exportpdf", "language", "div", "font", "autolink", "colorbutton", "find", "forms", "iframe", "link", "liststyle", "newpage", "pagebreak", "magicline", "print", "save", "tableresize", "widget", "uicolor", "smiley"] }}
+          initData="<p>This is an example CKEditor 4 WYSIWYG editor instance.</p>"
+          config={{
+            extraPlugins: ["emoji", "justify", "exportpdf", "language", "div", "font", "autolink", "colorbutton", "find", "forms", "link", "liststyle", "newpage", "pagebreak", "magicline", "print", "save", "tableresize", "widget", "uicolor", "smiley", "autogrow", "colordialog", "docprops", "devtools", "copyformatting", "codesnippet", "bidi", "a11yhelp", "autocomplete", "mentions", "indentblock", "panelbutton", "pastefromgdocs", "pastefromlibreoffice", "pastefromword", "pastetools", "preview", "scayt", "selectall", "sharedspace", "showblocks", "specialchar", "stylesheetparser", "table", "tableselection", "tabletools", "templates", "textmatch", "textwatcher", "widget", "clipboard", "codesnippetgeshi", "dialogadvtab", "divarea", "cssanim", "powrmediagallery", "zoom"],
+          }}
           onChange={(event, editor) => {
             // console.log(event);
             // console.log(event.editor.getData());
@@ -58,6 +60,10 @@ function App() {
           onInstanceReady={({ editor }) => {
             // Handles native `instanceReady` event.
             // console.log(editor);
+          }}
+          // tashqi tomondan
+          onNamespaceLoaded={CKEDITOR => {
+            CKEDITOR.plugins.addExternal('powrmediagallery', "https://cdn.jsdelivr.net/gh/superpowr/powr_for_ckeditor4/powrmediagallery/", 'plugin.js');
           }}
         />
       )}
